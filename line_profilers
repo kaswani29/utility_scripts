@@ -1,0 +1,16 @@
+import line_profiler
+import atexit
+profile = line_profiler.LineProfiler()
+atexit.register(profile.print_stats)
+
+@profile
+def is_addable(l, t):
+    for i, n in enumerate(l):
+        for m in l[i:]:
+            if n + m == t:
+                return True
+
+    return False
+
+assert is_addable(range(20), 25) == True
+assert is_addable(range(20), 40) == False
